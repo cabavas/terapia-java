@@ -1,6 +1,8 @@
 package com.terapia.controle.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -20,9 +22,11 @@ public class User {
     private String cpf;
 
     @Column(name = "email")
+    @Email
     private String email;
 
     @Column(name = "password")
+    @Size(min = 6)
     private String password;
 
     @Column(name = "phone")

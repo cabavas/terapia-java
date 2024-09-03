@@ -13,8 +13,9 @@ public class Message {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "recipient_id")
-    private Integer recipientId;
+    @OneToOne
+    @JoinColumn(name = "recipient_id")
+    private User recipientId;
 
     @Column(name = "date")
     private LocalDate date;
@@ -32,11 +33,11 @@ public class Message {
         return id;
     }
 
-    public Integer getRecipientId() {
+    public User getRecipientId() {
         return recipientId;
     }
 
-    public void setRecipientId(Integer recipientId) {
+    public void setRecipientId(User recipientId) {
         this.recipientId = recipientId;
     }
 

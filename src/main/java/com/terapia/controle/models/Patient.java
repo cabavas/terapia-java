@@ -33,7 +33,7 @@ public class Patient {
     @Column(name = "address")
     private String address;
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "patient")
     @JsonIgnore
     private List<Note> notes;
 

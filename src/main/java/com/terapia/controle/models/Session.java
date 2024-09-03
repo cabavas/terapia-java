@@ -13,14 +13,15 @@ public class Session {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "patient_id")
-    private Integer patientId;
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patientId;
 
     @Column(name = "session_date")
     private LocalDate sessionDate;
 
     @OneToOne
-    @Column(name = "note")
+    @JoinColumn(name = "note")
     private Note note;
 
     @Column(name = "session_status")
@@ -33,11 +34,11 @@ public class Session {
         return id;
     }
 
-    public Integer getPatientId() {
+    public Patient getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(Integer patientId) {
+    public void setPatientId(Patient patientId) {
         this.patientId = patientId;
     }
 

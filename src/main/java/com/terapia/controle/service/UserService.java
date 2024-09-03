@@ -1,25 +1,24 @@
 package com.terapia.controle.service;
 
+import com.terapia.controle.models.User;
+import com.terapia.controle.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private UserRepository userRepository;
 
-    public void registerUser(String username, String plainPassword) {
-        String encodedPassword = passwordEncoder.encode(plainPassword);
-    }
+    public List<User> getAllUsers() {return userRepository.findAll();}
 
-    public void updateUserPassword(Long userId, String newPlainPassword) {
-        String encodedPassword = passwordEncoder.encode(newPlainPassword);
-    }
+    public Optional<User> findById(Integer id) {return userRepository.findById(id);}
 
-    public String getPasswordByUsername(String username) {
-        //CHANGE LOGIC
-        return username;
-    }
+    public User save(User user) {return userRepository.save(user);}
+
+    public void deleteById(Integer id) {userRepository.deleteById(id);}
 }

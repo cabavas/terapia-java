@@ -44,17 +44,15 @@ public class NoteController {
             updatedNote.setBody(noteDetails.getBody());
             updatedNote.setDate(noteDetails.getDate());
 
-            // Atualize o paciente se estiver presente
             if (noteDetails.getPatient() != null && noteDetails.getPatient().getId() != null) {
                 Integer patientId = noteDetails.getPatient().getId();
                 Optional<Patient> patientOptional = patientService.findById(patientId);
                 if (patientOptional.isPresent()) {
                     updatedNote.setPatient(patientOptional.get());
                 } else {
-                    return ResponseEntity.badRequest().body(null); // ou outra abordagem para lidar com paciente não encontrado
+                    return ResponseEntity.badRequest().body(null);
                 }
             }
-
             return ResponseEntity.ok(noteService.save(updatedNote));
         } else {
             return ResponseEntity.notFound().build();
@@ -64,7 +62,6 @@ public class NoteController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Integer id) {
         if (noteService.findById(id).isPresent()) {
-
             noteService.delete(id);
             return ResponseEntity.ok("Note deleted");
         } else {
