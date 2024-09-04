@@ -1,5 +1,6 @@
 package com.terapia.controle.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ public class Note {
 
     @ManyToOne
     @JoinColumn(name = "patient_id")
+    @JsonIgnore
     private Patient patient;
 
     public Note() {
@@ -41,9 +43,7 @@ public class Note {
         return body;
     }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
+    public void setBody(String body) {this.body = body;}
 
     public LocalDate getDate() {
         return date;

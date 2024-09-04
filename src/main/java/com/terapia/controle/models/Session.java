@@ -30,6 +30,14 @@ public class Session {
     public Session() {
     }
 
+    public Session(Integer id, Patient patientId, LocalDate sessionDate, Note note, String sessionStatus) {
+        this.id = id;
+        this.patientId = patientId;
+        this.sessionDate = sessionDate;
+        this.note = note;
+        this.sessionStatus = sessionStatus;
+    }
+
     public Integer getId() {
         return id;
     }
